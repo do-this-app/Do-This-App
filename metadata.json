@@ -1,0 +1,6 @@
+{
+  "name": "DO THIS",
+  "description": "Confusing document? Know what to do next. Action-first document understanding powered by Gemini AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

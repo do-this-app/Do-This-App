@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* Mobile Safe Areas */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 1rem);
+}
+
+/* ============================================================
+   DO THIS 2026 VISUAL SYSTEM: TECHNICAL MICRO-TEXTURES & MOTION
+   ============================================================ */
+
+/* Micro-texture dot matrix embedded into card surfaces */
+.dot-matrix-surface {
+  background-image: radial-gradient(rgba(24, 24, 27, 0.05) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.dot-matrix-surface-subtle {
+  background-image: radial-gradient(rgba(24, 24, 27, 0.03) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+/* Technical Corner Brackets on high-priority intelligence panels */
+.technical-bracket-card {
+  position: relative;
+}
+.technical-bracket-card::before,
+.technical-bracket-card::after {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
+  border-color: rgba(24, 24, 27, 0.35);
+  transition: border-color 0.3s ease;
+}
+.technical-bracket-card::before {
+  top: 6px;
+  left: 6px;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+}
+.technical-bracket-card::after {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 1.5px solid;
+  border-right: 1.5px solid;
+}
+.technical-bracket-card:hover::before,
+.technical-bracket-card:hover::after {
+  border-color: rgba(16, 185, 129, 0.8);
+}
+
+/* Action Lock-In Panel Styling */
+.lock-in-hero-panel {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(24, 24, 27, 0.1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+.lock-in-hero-panel:hover {
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(16, 185, 129, 0.3);
+}
+
+/* Subtle Technical Edge Scanner Effect */
+@keyframes edgeScan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.edge-scanner-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.8), transparent);
+  animation: edgeScan 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Card Reveal Stagger Keyframes */
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-card-reveal {
+  animation: cardEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.stagger-1 { animation-delay: 40ms; }
+.stagger-2 { animation-delay: 90ms; }
+.stagger-3 { animation-delay: 140ms; }
+.stagger-4 { animation-delay: 190ms; }
+.stagger-5 { animation-delay: 240ms; }
+
+/* Micro Button Interactions */
+button, input, textarea, select {
+  transition-property: transform, background-color, border-color, color, box-shadow, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .edge-scanner-line {
+    display: none !important;
+  }
+}
+
+/* Print Styles for PDF / Paper Export */
+@media print {
+  @page {
+    margin: 1.5cm 1.5cm 1.5cm 1.5cm;
+    size: auto;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Hide interactive navigation, bottom bar, toasts, buttons in print */
+  nav,
+  header,
+  .no-print,
+  button,
+  [role="dialog"] {
+    display: none !important;
+  }
+
+  /* Make sure main content fills the printable width cleanly */
+  main,
+  .print-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Card layouts for print */
+  section {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #d1d5db !important;
+    margin-bottom: 1rem !important;
+    padding: 1rem !important;
+    background-color: #ffffff !important;
+  }
+
+  /* Hero action card in print: crisp high-contrast border and dark text */
+  .print-hero-card {
+    background-color: #f9fafb !important;
+    color: #111827 !important;
+    border: 2px solid #111827 !important;
+  }
+
+  .print-hero-card h3,
+  .print-hero-card span {
+    color: #111827 !important;
+  }
+}
